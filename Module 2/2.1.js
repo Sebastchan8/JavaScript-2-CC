@@ -180,3 +180,5 @@ let str = new String("test me");
 console.log(str instanceof String); // -> true
 
 
+// All clases are instances of Object:
+
