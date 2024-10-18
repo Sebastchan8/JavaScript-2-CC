@@ -207,6 +207,316 @@ console.log(Number("1204px")); // -> NaN
 
 
 
+/* -----------------------------------------------------------------
+--------> 3.1.8 Static properties and methods of the Number constructor
+------------------------------------------------------------------*/
+
+// A lotof string methods
+
+
+
+/* -----------------------------------------------------------------
+-------->  3.1.9 What we already know about strings
+------------------------------------------------------------------*/
+
+// How to declare a string
+let delay = 10;
+let name = "Bob";
+let order = 'pizza';
+let info = `Hi ${name}, you have to wait about ${delay} minutes for your ${order}`;
+console.log(info); // -> Hi Bob, you have to wait about 10 minutes for your pizza
+console.log(typeof name); // -> string
+console.log(typeof order); // -> string
+console.log(typeof info); // -> string
+
+
+// Examples:
+let warn2 = "Confirm ticket reservation for \"Alien 10\" movie.";
+let warn1 = 'Confirm ticket reservation for "Alien 10" movie.';
+let warn2 = "Confirm ticket reservation for 'Alien 10' movie.";
+let warn3 = `warning: "Confirm ticket reservation for 'Alien 10' movie."`;
+
+
+
+/* -----------------------------------------------------------------
+-------->   3.1.10 The String constructor
+------------------------------------------------------------------*/
+
+// we can define an a string and with the autoboxing we can use the methods of the String constructor
+let name = "Bob";
+console.log(name.length); // -> 3
+console.log("Alice".length ); // -> 5
+console.log("".length ); // -> 0
+
+
+
+/* -----------------------------------------------------------------
+-------->  3.1.11 String as an array of characters
+------------------------------------------------------------------*/
+
+// a string is an array of characters
+let title = "Alien 10";
+console.log(title[0]); // -> A
+console.log(title.charAt(0)); // -> A
+
+
+
+
+/* -----------------------------------------------------------------
+-------->   3.1.12 Case conversion &&  3.1.13 Splitting the string
+------------------------------------------------------------------*/
+
+let ipAddressStr = "127.0.0.1"
+let ipParts = ipAddressStr.split("."); // -> ["127", "0", "0", "1"]
+console.log(ipParts[0]); // -> 127
+
+
+
+
+/* -----------------------------------------------------------------
+-------->    3.1.14 Replacing substrings
+------------------------------------------------------------------*/
+
+let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.";
+let words = text.toLowerCase().replaceAll('.','').replaceAll(',','').split(' ');
+console.log(words.length); // -> 30
+
+
+/* -----------------------------------------------------------------
+-------->    Incomplete 3.1.15 Searching for substrings
+------------------------------------------------------------------*/
+
+let text = "One, two, three, one, two, three.";
+console.log(text.includes("two")); // -> true
+console.log(text.includes("four")); // -> false
+console.log(text.indexOf("two")); // -> 5
+console.log(text.indexOf("four")); // -> -1
+console.log(text.lastIndexOf("two")); // -> 22
+
+
+
+/* -----------------------------------------------------------------
+-------->     3.1.16 Copying substrings
+------------------------------------------------------------------*/
+
+let text = "One, two, three, one, two, three.";
+console.log(text.substr(0,8)); // -> One, two
+console.log(text.substr(10)); // -> three, one, two, three.
+console.log(text.substr(-6)); // -> three.
+console.log(text.substr(-6, 2)); // -> th
+
+
+console.log(text.substring(5, 8)); // -> two
+console.log(text.substring(5)); // -> two, three, one, two, three.
+console.log(text.substring(-11, 8)); // -> One, two
+
+
+console.log(text.slice(0,3)); // -> One
+console.log(text.slice(5)); // -> two, three, one, two, three.
+console.log(text.slice(-11)); // -> two, three.
+console.log(text.slice(-11, -8)); // -> two
+
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.17 Padding
+------------------------------------------------------------------*/
+
+let numbers = [100, 5, 66];
+for(let i=0; i< numbers.length; i++) {
+    console.log(String(numbers[i]).padStart(10, '0'));
+    console.log(String(numbers[i]).padStart(10, 'abc'));
+    console.log(String(numbers[i]).padStart(10));
+}
+
+
+
+// 0000000100
+// abcabca100
+// 100
+// 0000000005
+// abcabcabc5
+// 5
+// 0000000066
+// abcabcab66
+// 66
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.18 Trimming
+------------------------------------------------------------------*/
+
+let city = " Bergen  ";
+let street = " Dokkeboder";
+console.log(city.trimLeft().length); // -> 8 -> "Bergen  "
+console.log(city.trimRight().length); // -> 7 -> " Bergen"
+console.log(city.trim().length); // -> 6 -> "Berge"
+console.log(street.trim().length); // -> 10 -> "Dokkeboder"
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.19 Comparing strings
+------------------------------------------------------------------*/
+
+console.log("a" < "b"); // -> true
+console.log("abc" < "acd"); // -> true
+console.log("b" < "acd"); // -> false
+
+
+console.log("4" < "5"); // -> true
+console.log("2" < "12"); // -> false
+console.log("34" < "332"); // -> true
+
+
+console.log("brettesnes" < "Sundsfjord"); // -> false
+console.log("Brettesnes" < "Sundsfjord"); // -> true
+
+
+console.log("Ørnes" < "Sundsfjord"); // -> false
+
+
+console.log("Ørnes".localeCompare("Sundsfjord", "nn")); // -> -1
+console.log("Ørnes".localeCompare("Brettesnes", "nn")); // -> 1
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.20 Date
+------------------------------------------------------------------*/
+
+// In JavaScript, January 1, 1970 00:00:00:00 UTC is used as the zero-point, as in many computer systems.
+
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.20 Date
+------------------------------------------------------------------*/
+// UTC (Universal Coordinated Time), referring to the GMT+0 time zone.
+
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.21 Time zones and other tricks
+------------------------------------------------------------------*/
+
+let date1 = new Date(0);
+let date2 = new Date(1000*60*60*10);
+console.log(date1.toUTCString()); // -> Thu, 01 Jan 1970 00:00:00 GMT
+console.log(date2.toUTCString()); // -> Thu, 01 Jan 1970 10:00:00 GMT
+
+
+
+console.log(date2.getTimezoneOffset()); // -> 0
+console.log(date2.toLocaleString()); // -> 01/01/1970, 10:00:00
+console.log(date2.toISOString()); // -> 1970-01-01T10:00:00.000Z
+console.log(date2.toUTCString()); // -> Thu, 01 Jan 1970 10:00:00 GMT
+
+
+
+console.log(date2.getTimezoneOffset()); // -> -60
+console.log(date2.toLocaleString()); // -> 01/01/1970, 11:00:00
+console.log(date2.toISOString()); // -> 1970-01-01T10:00:00.000Z
+console.log(date2.toUTCString()); // -> Thu, 01 Jan 1970 10:00:00 GMT
+
+
+
+date3 = new Date("2020-02-02T20:20:00.000");
+date4 = new Date("2020-02-02T20:20:00.000Z");
+console.log(date3.toLocaleString()); // -> 02/02/2020, 20:20:00
+console.log(date3.toISOString()); // -> 2020-02-02T19:20:00.000Z
+console.log(date3.toUTCString()); // -> Sun, 02 Feb 2020 19:20:00 GMT
+console.log(date4.toLocaleString()); // -> 02/02/2020, 21:20:00
+console.log(date4.toISOString()); // -> 2020-02-02T20:20:00.000Z
+console.log(date4.toUTCString()); // -> Sun, 02 Feb 2020 20:20:00 GMT
+console.log(date3.getTime()); // -> 1580671200000
+console.log(date4.getTime()); // -> 1580674800000
+console.log(date4.getTime() - date3.getTime()); // -> 3600000
+
+
+
+
+/* -----------------------------------------------------------------
+-------->      3.1.22 Current time
+------------------------------------------------------------------*/
+
+let nowObj = new Date();
+console.log(nowObj.toLocaleString());
+
+
+let now = Date.now(); // timestamp
+let nowObj = new Date(now);
+console.log(`now : ${typeof now} : ${now}`);
+console.log(`now : ${typeof nowObj} : ${nowObj}`);
+
+
+
+/* -----------------------------------------------------------------
+-------->       3.1.23 Time specification with individual components
+------------------------------------------------------------------*/
+
+let date1 = new Date(2020, 6);
+let date2 = new Date(2020, 6, 8);
+let date3 = new Date(2020, 6, 8, 10);
+let date4 = new Date(2020, 6, 8, 10, 20, 45);
+console.log(date1.toLocaleString()); // -> 01/07/2020, 00:00:00
+console.log(date2.toLocaleString()); // -> 08/07/2020, 00:00:00
+console.log(date3.toLocaleString()); // -> 08/07/2020, 10:00:00
+console.log(date4.toLocaleString()); // -> 08/07/2020, 10:20:45
+
+
+/* -----------------------------------------------------------------
+-------->       3.1.24 Time specification with date string
+------------------------------------------------------------------*/
+
+let date1 = new Date("2020-07-08");
+let date2 = new Date("2020-07-08T10:20:00");
+let date3 = new Date("2020-07-08T10:20:00Z");
+
+
+let date1 = new Date("Mon Mar 02 2020 10:00:00");
+let date2 = new Date("Mon March 2 2020 10:00");
+let date3 = new Date("Mar 02 2020 10:00:00");
+let date4 = new Date("2 March 2020, 10:");
+let date5 = new Date("3.2.2020");
+let date6 = Date("03/02-2020, 10:00");
+let date7 = new Date("2020, 10:00");
+let date8 = new Date("2020 march-02, 10:00");
+let date9 = new Date("3.2.2020 GMT+0400");
+let date10 = new Date("Mon Mar 02 2020 10:00:00 UTC-4");
+
+
+
+/* -----------------------------------------------------------------
+-------->       3.1.25 Practical use of a timestamp
+------------------------------------------------------------------*/
+
+let date1 = new Date(2020, 6, 8, 10, 20, 0);
+let date2 = new Date(2020, 6, 9, 10, 20, 0);
+console.log(date2.getTime() - date1.getTime()); // -> 86400000 -> 1000 x 60 x 60 x 24
+
+
+let startTime = Date.now();
+for(i=0; i<10000000; i++){}
+let endTime = Date.now();
+console.log(endTime - startTime);
+
+
+/* -----------------------------------------------------------------
+-------->        3.1.26 Operating on individual date and time components
+------------------------------------------------------------------*/
+
+let date = new Date("2020-07-08T10:20:00");
+console.log(date.getMonth()); // -> 6 
+console.log(date.getDay()); // -> 3
+console.log(date.getDate()); // 8
+console.log(date.getHours()); // -> 10
+date.setHours(12);
+console.log(date.getHours()); // -> 12
+
+
+let date = new Date("2020-07-08T10:20:00");
+console.log(date.toLocaleDateString()); // -> 08/07/2020
+console.log(date.toLocaleTimeString()); // -> 10:20:00
+
 
 
 
